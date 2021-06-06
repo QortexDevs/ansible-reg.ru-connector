@@ -48,7 +48,7 @@ class REGRUAPIConnector:
         }
 
     def make_post_api_call(self, endpoint, payload={}):
-        payload = {**payload, **self.make_credentials()}
+        payload = self.prepare_post_json_request_payload(payload)
         endpoint = self.make_url(endpoint)
         return httpx.get(url=endpoint, params=payload).json()
 
@@ -58,7 +58,7 @@ class REGRUAPIConnector:
     def zone_get_resource_records(self, domain):
         domains = [{'dname': domain}]
         return self.make_post_api_call('zone/get_resource_records', {
-            'domains', domains
+            'domains': domains
         })
 
     def zone_add_alias(self, domain, subdomain, ip_address):

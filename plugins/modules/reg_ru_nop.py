@@ -2,8 +2,8 @@
 
 from re import U
 import httpx
-from ansible.module_utils.basic import AnsibleModule, missing_required_lib
-from .reg_ru_api import REGRUConnector
+from ansible.module_utils.basic import AnsibleModule
+from .reg_ru_api import REGRUAPIConnector
 ANSIBLE_METADATA = {
     "metadata_version": "1.1",
     "status": ["preview"],
@@ -70,7 +70,7 @@ def main():
     username = module.params["username"]
     password = module.params["password"]
 
-    reg_ru_connector = REGRUConnector(username, password)
+    reg_ru_connector = REGRUAPIConnector(username, password)
     zones_resource_records = reg_ru_connector.zone_get_resource_records(['qortex.ru'])
 
 if __name__ == "__main__":
