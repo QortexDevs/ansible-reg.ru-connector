@@ -72,6 +72,7 @@ def main():
 
     reg_ru_connector = REGRUAPIConnector(username, password)
     zones_resource_records = reg_ru_connector.zone_get_resource_records(['qortex.ru'])
+    
 
 if __name__ == "__main__":
     main()
